@@ -2,10 +2,6 @@
 <html>
 <head>
   <title>FlapperNews</title>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -22,7 +18,7 @@
       <h1>Flapper News</h1>
     </div>
 
-    <div ng-repeat="post in posts | orderBy:'-upvotes'">
+    <div ng-repeat="post in posts">
       <span class="glyphicon glyphicon-thumbs-up"
         ng-click="incrementUpvotes(post)"></span>
       {{post.upvotes}}
@@ -71,7 +67,7 @@
       </h3>
     </div>
 
-    <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
+    <div ng-repeat="comment in post.comments">
       <span class="glyphicon glyphicon-thumbs-up"
         ng-click="incrementUpvotes(comment)"></span>
       {{comment.upvotes}} - by {{comment.author}}
