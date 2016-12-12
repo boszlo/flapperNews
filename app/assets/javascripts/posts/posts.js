@@ -1,4 +1,5 @@
 angular.module('flapperNews').factory('posts', ['$http', function($http){
+  
   var o = {
     posts: []
   };  
@@ -10,15 +11,26 @@ angular.module('flapperNews').factory('posts', ['$http', function($http){
   };*/
 
   o.getAll = function() {
-    $http({method: 'GET', url: '/posts.json'}).
-    then(
+    $http({method: 'GET', url: '/posts.json'})
+    .then(
       function(response) {
-        var status = response.status;
         angular.copy(response.data, o.posts);
       },
       function(response) {
-        var status = response.status;
-        console.log('bad response');
+        alert('bad response from getAll()');
+      }
+    );
+  };
+
+  o.create = function(post) {
+    $http({method: 'POST', url: '/posts.json', data: post})
+    .then(
+      function(response) {
+        o.posts.push(response.data);
+      },
+      function(response) {
+        alert('POST error');
+        console.log(response);
       }
     );
   };
