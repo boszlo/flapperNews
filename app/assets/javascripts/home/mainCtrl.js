@@ -18,6 +18,6 @@ angular.module('flapperNews').controller('MainCtrl', [
     };
 
     $scope.incrementUpvotes = function(post){
-      post.upvotes += 1;
+      posts.upvote(post);
     };
 }]);

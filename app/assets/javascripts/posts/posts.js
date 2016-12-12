@@ -30,10 +30,21 @@ angular.module('flapperNews').factory('posts', ['$http', function($http){
       },
       function(response) {
         alert('POST error');
-        console.log(response);
       }
     );
   };
+
+  o.upvote = function(post) {
+    $http.put('/posts/' + post.id + '/upvote.json')
+    .then(
+      function(response) {
+        post.upvotes += 1;
+      },
+      function(response) {
+        alert('upvote unsuccessful');
+      }
+    );
+  }
 
   return o;
 
