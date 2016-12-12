@@ -4,6 +4,7 @@ angular.module('flapperNews').controller('MainCtrl', [
   function($scope, posts){
 
     $scope.posts = posts.posts;
+    $scope.title = '';
 
     $scope.addPost = function(){
       if(!$scope.title || $scope.title === '') { return; }
