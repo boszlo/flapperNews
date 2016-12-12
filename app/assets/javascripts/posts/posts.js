@@ -11,11 +11,16 @@ angular.module('flapperNews').factory('posts', ['$http', function($http){
 
   o.getAll = function() {
     $http({method: 'GET', url: '/posts.json'}).
-    then(function(response) {
-      var status = response.status;
-      
-      angular.copy(response.data, o.posts);
-    });
+    then(
+      function(response) {
+        var status = response.status;
+        angular.copy(response.data, o.posts);
+      },
+      function(response) {
+        var status = response.status;
+        console.log('bad response');
+      }
+    );
   };
 
   return o;
